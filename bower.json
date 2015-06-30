@@ -1,0 +1,27 @@
+{
+  "name": "publicidad-mvc",
+  "version": "0.0.1",
+  "homepage": "https://github.com/gonzaciaffoneml/publicidad-mvc",
+  "authors": [
+    "Gonzalo Ciaffone <gonzalo.ciaffone@mercadolibre.com>"
+  ],
+  "description": "Backbone training and ads admin with spa structure",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.7.0",
+    "jquery": "1.x.x",
+    "backbone": "~1.1.2",
+    "chico": "https://github.com/mercadolibre/chico.git",
+    "handlebars": "~2.0.0"
+  },
+  "devDependencies": {
+    "jquery-mockjax": "~1.6.2"
+  }
+}
