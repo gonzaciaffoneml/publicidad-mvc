@@ -2,7 +2,6 @@
 bin/
 bin-debug/
 bin-release/
-build/
 dist/
 node_modules/
 bower_components/
