@@ -1,0 +1,115 @@
+#app{
+    margin-top: 10px;
+}
+
+.campaigns {
+    border-collapse:collapse;
+    table-layout:fixed;
+    .long-col {
+        width: 20%;
+    }
+    .medium2-col {
+        width: 15%;
+    }
+    .medium-col {
+        width: 10%;
+    }
+    .small-col {
+        width: 5%;
+    }
+    input {
+        width:90%;
+    }
+    tbody tr:nth-child(even) {
+       background-color: #EFEFEF;
+       input[readonly] {
+            background-color: #EFEFEF;
+       }
+    }
+    tbody tr.error-color {
+       background-color: #F2DEDE;
+       input.error-border {
+            border-color: #B94A48;
+       }
+    }
+    input[readonly] {
+         color: #333;
+    }
+    #newAddRow{
+        width: 150px;
+        text-align: center;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+.view-campaign {
+    .save {
+        display: none;
+    }
+    .modify {
+        display: table-cell;
+    }
+    &.modify-campaign {
+        .save {
+            display: table-cell;
+        }
+        .modify {
+            display: none;
+        }
+    }
+}
+
+.hidden-row {
+    display: none;
+}
+
+$scale: 0.11;
+$color: #666;
+
+.icon {
+  position: relative;
+  width: 200px*$scale;
+  height: 200px*$scale;
+  cursor: pointer;
+  margin: -7px auto 0 auto;
+}
+
+.icon:hover .lid, .icon:hover .lidcap {
+  transform: rotate(10deg);
+  margin-bottom: 15px*$scale;
+}
+
+.lidcap, .lid, .bin {
+  position: absolute;
+}
+
+.lidcap, .lid {
+  border-top-left-radius: 4px*$scale;
+  border-top-right-radius: 4px*$scale;
+  background: $color;
+  transition: transform .2s linear, margin .2s linear;
+}
+
+.lidcap {
+  bottom: 138px*$scale;
+  left: 90px*$scale;
+  height: 10px*$scale;
+  width: 20px*$scale;
+}
+
+.lid {
+  bottom: 120px*$scale;
+  left: 30px*$scale;
+  width: 140px*$scale;
+  height: 20px*$scale;
+}
+
+.bin {
+  bottom: 0;
+  left: 40px*$scale;
+  width: 100px*$scale;
+	border-top: 120px*$scale solid $color;
+	border-left: 10px*$scale solid transparent;
+	border-right: 10px*$scale solid transparent;
+}

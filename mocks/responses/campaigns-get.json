@@ -1,0 +1,54 @@
+[
+    {
+        "campaignId": 0,
+        "name": "Adidas",
+        "dailyBudget": "$ 4,99",
+        "startingDate": "12/03/2015",
+        "endingDate": "12/10/2015",
+        "cpcProm": "$ 1,22",
+        "clics": 12,
+        "prints": 124,
+        "ctr": "0,13%",
+        "budget": "$ 35",
+        "estate": "Active"
+    },
+    {
+        "campaignId": 1,
+        "name": "Compumundo",
+        "dailyBudget": "$ 12,50",
+        "startingDate": "12/05/2015",
+        "endingDate": "12/08/2015",
+        "cpcProm": "$ 3,22",
+        "clics": 123,
+        "prints": 1245,
+        "ctr": "0,54%",
+        "budget": "$ 125",
+        "estate": "Active"
+    },
+    {
+        "campaignId": 2,
+        "name": "Garbarino",
+        "dailyBudget": "$ 25,50",
+        "startingDate": "01/01/2014",
+        "endingDate": "31/12/2015",
+        "cpcProm": "$ 0,22",
+        "clics": 1235,
+        "prints": 12452,
+        "ctr": "0,05%",
+        "budget": "$ 5000",
+        "estate": "Active"
+    },
+    {
+        "campaignId": 3,
+        "name": "Dafiti",
+        "dailyBudget": "$ 108,30",
+        "startingDate": "31/11/2014",
+        "endingDate": "31/11/2015",
+        "cpcProm": "$ 0,53",
+        "clics": 756,
+        "prints": 4522,
+        "ctr": "0,07%",
+        "budget": "$ 9000",
+        "estate": "Paused"
+    }
+]
