@@ -28677,6 +28677,10 @@ var Router = Backbone.Router.extend({
     routes: {
         "": "index"
     },
+    
+    initialize: function() {
+        this.index();
+    },
 
     index: function() {
 
