@@ -12,17 +12,19 @@ AdvertisingApp.module('PAds', function (PAds, AdvertisingApp, Backbone, Marionet
 
     controller = {
         index : function() {
+            var campaigns,
+                campaignView;
 
-            AdvertisingApp.campaigns = new AdvertisingApp.PAds.Collections.Campaigns();
+            campaigns = new AdvertisingApp.PAds.Collections.Campaigns();
 
-            AdvertisingApp.campaigns.fetch({
+            campaigns.fetch({
                 'success': function(collection, response, options){
-                    collection.trigger('fetched');
+                    // collection.trigger('fetched');
                 }
             });
 
-            var campaignView = new Advertising.Views.Campaign({
-                collection: AdvertisingApp.campaigns;
+            campaignView = new AdvertisingApp.PAds.Views.Campaign({
+                collection: campaigns
             });
 
             AdvertisingApp.mainRegion.show(campaignView);
@@ -30,10 +32,10 @@ AdvertisingApp.module('PAds', function (PAds, AdvertisingApp, Backbone, Marionet
         }
     };
 
-    PAds.onStart = function () {
+    AdvertisingApp.onStart = function () {
         var router = new Router({
             controller: controller
         });
     };
 
-};
+});

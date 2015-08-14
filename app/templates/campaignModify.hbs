@@ -1,8 +1,11 @@
 <td>
+    <input type="checkbox" name="check" class="checkbox">
+</td>
+<td>
     <input id="name" class="readonly-element" type="text" name="name" value="{{name}}" readonly="readonly">
 </td>
 <td>
-    <input id="dailyBudget" class="readonly-element" type="text" name="dailyBudget" value="{{dailyBudget}}" readonly="readonly">
+    $ <input id="dailyBudget" class="readonly-element" type="text" name="dailyBudget" value="{{dailyBudget}}" readonly="readonly">
 </td>
 <td>
     {{startingDate}}
@@ -11,7 +14,7 @@
     <input id="endingDate" class="readonly-element" type="text" name="endingDate" value="{{endingDate}}" readonly="readonly">
 </td>
 <td>
-    {{cpcProm}}
+    $ {{cpcProm}}
 </td>
 <td>
     {{clics}}
@@ -20,10 +23,10 @@
     {{prints}}
 </td>
 <td>
-    {{ctr}}
+    {{ctr}}%
 </td>
 <td>
-    {{budget}}
+    ${{budget}}
 </td>
 <td>
     <input id="estate" class="readonly-element" type="text" name="estate" value="{{estate}}" readonly="readonly">

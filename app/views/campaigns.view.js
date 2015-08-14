@@ -1,52 +1,72 @@
-Advertising.Views.Campaign = Backbone.View.extend({
+//'use strict';
 
-    tagName: 'table',
+AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, Marionette, $, _) {
 
-    className: 'campaigns ch-datagrid',
+    Views.Campaign = Marionette.CompositeView.extend({
 
-    template: __templates.tableCampaign,
+      childViewContainer: "tbody",
 
-    events: {
-        'click [data-js="addBtn"]': 'addCampaign'
-    },
 
-    initialize: function () {
-        var that = this;
+      tagName: 'div',
 
-        this.collection.on('fetched', function() {
-            that.render();
-        });
-    },
+      className: '',
 
-    render: function () {
+      template: __templates.tableCampaign,
 
-        var  that = this;
+      childView: Views.ModifyCampaign,
 
-        this.$el.empty();
+      ui: {
+          addBtn: '[data-js="addBtn"]',
+          addInput: '[data-js="addInput"]',
+          checkAll: '[data-js="checkAll"]',
+          modifySelected: '[data-js="modifySelected"]',
+          saveSelected: '[data-js="saveSelected"]',
+          sortBySelect: '[data-js="sortBy"]',
+          orderSelect: '[data-js="order"]'
+      },
 
-        this.$el.append(this.template());
+      events: {
+          'click @ui.addBtn': 'addCampaign',
+          'click @ui.checkAll': 'checkRows',
+          'click @ui.modifySelected': 'modifySelected',
+          'click @ui.saveSelected': 'saveSelected',
+          'change @ui.sortBySelect': 'sort',
+          'change @ui.orderSelect': 'sort'
+      },
 
-        _.each(this.collection.models, function(model, i){
+        addCampaign: function () {
+            for (i = 1; i <= this.ui.addInput.val(); i++) {
+              var newCampaign = new AdvertisingApp.PAds.Models.Campaign();
+              this.collection.add(newCampaign);
+            }
+        },
 
-            var modifyCampaign = new Advertising.Views.ModifyCampaign({
-                model: model,
-                isEdit : false
-            });
+        checkRows : function () {
+            if($(this.ui.checkAll).prop('checked')){
+                $('tbody tr td input[type="checkbox"]').each(function(){
+                    $(this).prop('checked', true);
+                });
+            }else{
+                $('tbody tr td input[type="checkbox"]').each(function(){
+                    $(this).prop('checked', false);
+                });
+            }
+        },
 
-            that.$('tbody').append(modifyCampaign.el);
+        modifySelected : function () {
+            AdvertisingApp.trigger('modifySelected');
+        },
 
-        });
+        saveSelected : function () {
+            AdvertisingApp.trigger('saveSelected');
+        },
 
-    },
-
-    addCampaign: function () {
-        var newCampaign = new Advertising.Models.Campaign();
-        var modifyCampaign = new Advertising.Views.ModifyCampaign({
-            model: newCampaign,
-            isAdding : true
-        });
-        this.collection.add(newCampaign);
-        this.$('tbody').append(modifyCampaign.el);
-    }
-
+        sort : function () {
+            this.collection.sortVar.sortBy = this.ui.sortBySelect.val();
+            this.collection.sortVar.sortOrder = this.ui.orderSelect.val();
+            console.log(this.ui.sortBySelect.val());
+            console.log(this.ui.orderSelect.val());
+            this.collection.sort();
+        }
+    });
 });

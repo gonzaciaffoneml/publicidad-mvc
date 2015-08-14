@@ -1,5 +1,3 @@
-'use strict';
-
 AdvertisingApp.module('PAds.Models', function (Models, AdvertisingApp, Backbone, Marionette, $, _) {
 
     Models.Campaign = Backbone.Model.extend({
@@ -15,9 +13,9 @@ AdvertisingApp.module('PAds.Models', function (Models, AdvertisingApp, Backbone,
             }
         },
         defaults:{
-            'campaignId': null,
+            'id': null,
             'name': null,
-            'dailyBudget': null,
+            'dailyBudget': 0,
             'startingDate': function () {
                 var today = new Date();
                 var dd = today.getDate();
@@ -38,7 +36,7 @@ AdvertisingApp.module('PAds.Models', function (Models, AdvertisingApp, Backbone,
             'cpcProm': 0,
             'clics': 0,
             'prints': 0,
-            'ctr': "0.00%",
+            'ctr': 0,
             'budget': 0,
             'estate': null
         }

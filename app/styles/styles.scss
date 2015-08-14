@@ -18,7 +18,7 @@
         width: 5%;
     }
     input {
-        width:90%;
+        width:70%;
     }
     tbody tr:nth-child(even) {
        background-color: #EFEFEF;
@@ -32,14 +32,20 @@
             border-color: #B94A48;
        }
     }
+    tfoot {
+        input {
+            width: 50px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
     input[readonly] {
          color: #333;
     }
     #newAddRow{
-        width: 150px;
         text-align: center;
         margin: 0 auto;
-        display: block;
+        margin-left: 10px;
     }
 }
 

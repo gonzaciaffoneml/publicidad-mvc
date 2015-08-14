@@ -55,7 +55,9 @@ gulp.task('js-build', function() {
         'bower_components/handlebars/handlebars.js',
         'bower_components/underscore/underscore.js',
         'bower_components/backbone/backbone.js',
+        'node_modules/backbone.marionette/lib/backbone.marionette.js',
         'bower_components/chico/dist/ui/chico.js',
+        'app/utils/*.js',
 
         //// MOCKS /////
         'bower_components/jquery-mockjax/jquery.mockjax.js',
@@ -70,11 +72,12 @@ gulp.task('js-build', function() {
         'app/app.js',
 
         // messaging files
-        'app/views/**/*.js',
+
         'app/models/**/*.js',
         'app/collections/**/*.js',
-        'app/router.js',
-        'app/utils/*.js',
+        'app/views/modifyCampaign.view.js',
+        'app/views/campaigns.view.js',
+        'app/module.js'
 
     ])
     .pipe(concate('bundle.js'))
@@ -161,6 +164,7 @@ gulp.task('dist', ['build', 'clean-dist'], function () {
 gulp.task('watch', function() {
     gulp.start('default');
     gulp.watch([
+        'gulpfile.js',
         'app/*.js',
         'app/**/*.js',
         'mocks/mock.js'

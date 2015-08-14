@@ -1,77 +1,102 @@
-Advertising.Views.ModifyCampaign = Backbone.View.extend({
+//'use strict';
 
-    tagName: 'tr',
+AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, Marionette, $, _) {
 
-    className: 'view-campaign',
 
-    template: __templates.campaignModify,
+    Views.ModifyCampaign = Marionette.ItemView.extend({
 
-    events: {
-        'click [data-js="saveBtn"]': 'saveCampaign',
-        'click [data-js="modifyBtn"]': 'modifyCampaign',
-        'click [data-js="deleteBtn"]': 'deleteCampaign'
-    },
+        tagName: "tr",
 
-    initialize: function (options) {
-        this.isAdding = options.isAdding;
-        this.render();
-    },
+        template:  __templates.campaignModify,
 
-    render: function () {
+        className: 'view-campaign',
 
-        this.$el.html(this.template(this.model.toJSON()));
-        if (this.isAdding) {
-            this.$el.addClass('modify-campaign ch-hide');
+        ui: {
+            saveBtn: '[data-js="saveBtn"]',
+            modifyBtn: '[data-js="modifyBtn"]',
+            deleteBtn: '[data-js="deleteBtn"]'
+        },
+
+        events: {
+            'click @ui.saveBtn': 'saveCampaign',
+            'click @ui.modifyBtn': 'modifyCampaign',
+            'click @ui.deleteBtn': 'deleteCampaign'
+        },
+
+        initialize: function(){
+            this.listenTo(AdvertisingApp, "modifySelected", this.modifySelected);
+            this.listenTo(AdvertisingApp, "saveSelected", this.saveSelected);
+          },
+
+        onRender: function () {
+            if (this.model.get('name') === null) {
+                this.$el.addClass('modify-campaign ch-hide');
+                this.$el.find('.readonly-element').attr('readonly', false);
+                this.$el.fadeIn("slow");
+                this.$(".checkbox").prop('checked', true);
+            }
+        },
+
+        saveCampaign: function() {
+            that = this;
+            this.$el.hide();
+            this.model.set({
+                name: this.$('#name').val(),
+                dailyBudget: this.$('#dailyBudget').val(),
+                endingDate: this.$('#endingDate').val(),
+                estate: this.$('#estate').val()
+            });
+            this.model.save();
+            that.$el.find('input').removeClass('error-border');
+            if (this.model.validationError) {
+              this.$el.addClass('error-color');
+              $.each(this.model.validationError, function(index, value) {
+                  var element = '#' + value;
+                  that.$el.find(element).addClass('error-border');
+              });
+          } else {
+              this.$el.removeClass('error-color');
+              this.$el.removeClass('modify-campaign');
+              this.$el.find('.readonly-element').attr('readonly', true);
+          }
+            this.$el.fadeIn("slow");
+        },
+
+        modifyCampaign: function() {
+            this.$el.hide();
+            this.$el.addClass('modify-campaign');
             this.$el.find('.readonly-element').attr('readonly', false);
             this.$el.fadeIn("slow");
-        }
-    },
+        },
 
-    saveCampaign: function() {
-        that = this;
-        this.$el.hide();
-        this.model.set({
-            name: this.$('#name').val(),
-            dailyBudget: this.$('#dailyBudget').val(),
-            endingDate: this.$('#endingDate').val(),
-            estate: this.$('#estate').val()
-        });
-        this.model.save();
-        that.$el.find('input').removeClass('error-border');
-        if (this.model.validationError) {
-          this.$el.addClass('error-color');
-          $.each(this.model.validationError, function(index, value) {
-              var element = '#' + value;
-              that.$el.find(element).addClass('error-border');
-          });
-      } else {
-          this.$el.removeClass('error-color');
-          this.$el.removeClass('modify-campaign');
-          this.$el.find('.readonly-element').attr('readonly', true);
-      }
-        this.$el.fadeIn("slow");
-    },
+        deleteCampaign: function() {
+            that = this;
+            this.$el.fadeOut();
+            this.model.destroy({
+                success: function(){
+                    that.$el.remove();
+                },
+                error: function(){
+                    that.$el.fadeIn();
+                }
+            });
+        },
 
-    modifyCampaign: function() {
-        this.$el.hide();
-        this.$el.addClass('modify-campaign');
-        this.$el.find('.readonly-element').attr('readonly', false);
-        this.trigger('onModify');
-        this.$el.fadeIn("slow");
-    },
+        modifySelected : function () {
+             if(this.$(".checkbox").is(':checked')) {
+                if (!this.$el.hasClass( "modify-campaign" )){
+                    this.modifyCampaign();
+                }
+             }
+        },
 
-    deleteCampaign: function() {
-        that = this;
-        this.$el.fadeOut();
-        this.model.destroy({
-            success: function(){
-                that.$el.remove();
-            },
-            error: function(){
-                that.$el.fadeIn();
+        saveSelected : function () {
+            if(this.$(".checkbox").is(':checked')) {
+                if (this.$el.hasClass( "modify-campaign" )){
+                    this.saveCampaign();
+                }
             }
+        }
+
         });
-
-
-    }
 });
