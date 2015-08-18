@@ -1,5 +1,13 @@
 #app {
   margin-top: 10px; }
+  #app .search-field {
+    margin-left: 100px;
+    display: inline-block;
+    margin-bottom: 10px; }
+  #app .sort-field {
+    float: right;
+    display: inline-block;
+    margin-top: 10px; }
 
 .campaigns {
   border-collapse: collapse;

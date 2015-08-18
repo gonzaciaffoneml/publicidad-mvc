@@ -1,8 +1,9 @@
-'use strict';
-
 AdvertisingApp.module('PAds', function (PAds, AdvertisingApp, Backbone, Marionette, $, _) {
     var controller,
         Router;
+
+        AdvertisingApp.PAds.Cache = {};
+        AdvertisingApp.PAds.Cache.Collections = {};
 
     Router = Marionette.AppRouter.extend({
         'appRoutes': {
@@ -19,7 +20,7 @@ AdvertisingApp.module('PAds', function (PAds, AdvertisingApp, Backbone, Marionet
 
             campaigns.fetch({
                 'success': function(collection, response, options){
-                    // collection.trigger('fetched');
+                    AdvertisingApp.PAds.Cache.Collections.campaigns = _.extend({}, collection);
                 }
             });
 

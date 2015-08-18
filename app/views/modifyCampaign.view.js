@@ -26,6 +26,7 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
         initialize: function(){
             this.listenTo(AdvertisingApp, "modifySelected", this.modifySelected);
             this.listenTo(AdvertisingApp, "saveSelected", this.saveSelected);
+            this.listenTo(AdvertisingApp, "deleteSelected", this.deleteSelected);
           },
 
         onRender: function () {
@@ -95,6 +96,12 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
                 if (this.$el.hasClass( "modify-campaign" )){
                     this.saveCampaign();
                 }
+            }
+        },
+
+        deleteSelected : function () {
+            if(this.$(".checkbox").is(':checked')) {
+                this.deleteCampaign();
             }
         }
 

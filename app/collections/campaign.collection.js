@@ -5,17 +5,17 @@ AdvertisingApp.module('PAds.Collections', function (Collections, AdvertisingApp,
         initialize: function(){
           this.sortVar = {
               sortBy : "dailyBudget",
-              sortOrder : "asc"
+              sortOrder : "DESC"
           };
         },
 
         comparator: function(collection){
           var that = this;
-          if (that.sortVar.sortOrder === "asc") {
+          if (that.sortVar.sortOrder === "DESC") {
               return (collection.get(that.sortVar.sortBy));
           } else {
               return -(collection.get(that.sortVar.sortBy));
           }
-        }
+      }
     });
 });

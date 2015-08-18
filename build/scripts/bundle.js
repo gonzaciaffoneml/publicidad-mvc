@@ -32377,7 +32377,7 @@ this["__templates"]["campaignModify"] = Handlebars.template({"compiler":[6,">= 2
     + "\" readonly=\"readonly\">\n</td>\n<td class=\"modify\">\n    <input type=\"button\" value=\"Modificar\" class=\"ch-btn ch-btn-small\"  data-js=\"modifyBtn\">\n</td>\n<td class=\"save\">\n    <input type=\"button\" value=\"Guardar\" class=\"ch-btn ch-btn-small\"  data-js=\"saveBtn\">\n</td>\n<td class=\"delete\">\n    <div class=\"icon\" role=\"button\" data-js=\"deleteBtn\">\n      <div class=\"lid\"></div>\n      <div class=\"lidcap\"></div>\n      <div class=\"bin\"></div>\n    </div>\n</td>\n";
 },"useData":true});
 this["__templates"]["tableCampaign"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<h1>Administrador de Campañas</h1>\n<div class=\"actions\">\n    <input type=\"button\" class=\"ch-btn ch-btn-small\" value=\"Modify Selected\" data-js=\"modifySelected\">\n    <input type=\"button\" class=\"ch-btn ch-btn-small\" value=\"Save Selected\" data-js=\"saveSelected\">\n    <label for=\"input_ico_inside\">\n        Search by name:\n    </label>\n    <input class=\"ch-form-icon-input\" type=\"text\" id=\"input_ico_inside\" name=\"input_ico\" size=\"30\" placeholder=\"\">\n    <i class=\"ch-form-icon-inner ch-icon-search\"></i>\n    <label for=\"sortBy\">\n        Ordenar por:\n    </label>\n    <select id=\"sortBy\" data-js=\"sortBy\">\n        <option value=\"DB\">Daily budget</option>\n        <option value=\"CPC\">CPC</option>\n        <option value=\"CLICS\">Clics</option>\n        <option value=\"PRINTS\">Prints</option>\n        <option value=\"CTR\">CTR</option>\n        <option value=\"BUDGET\">Budget</option>\n    </select>\n    <select id=\"order\" data-js=\"order\">\n        <option value=\"DESC\">Desc</option>\n        <option value=\"ASC\">Asc</option>\n    </select>\n</div>\n<table class=\"campaigns ch-datagrid\">\n    <thead>\n        <tr>\n            <th>\n                <input type=\"checkbox\" data-js=\"checkAll\" name=\"checkAll\">\n            </th>\n            <th class=\"medium2-col\">\n                Name\n            </th>\n            <th class=\"medium-col\">\n                Daily budget\n            </th>\n            <th class=\"medium-col\">\n                Starting Date\n            </th>\n            <th class=\"medium-col\">\n                Ending date\n            </th>\n            <th class=\"small-col\">\n                CPC\n            </th>\n            <th class=\"small-col\">\n                Clics\n            </th>\n            <th class=\"small-col\">\n                Prints\n            </th>\n            <th class=\"small-col\">\n                CTR\n            </th>\n            <th class=\"small-col\">\n                Budget\n            </th>\n            <th class=\"medium-col\">\n                State\n            </th>\n            <th class=\"medium-col\">\n                Acción\n            </th>\n            <th class=\"small-col\">\n                Delete\n            </th>\n        </tr>\n    </thead>\n    <tbody></tbody>\n    <tfoot>\n        <tr>\n            <td colspan=\"4\">\n                Add <input id=\"add-input\" type=\"text\" name=\"add-input\" value=\"1\" data-js=\"addInput\"> row/s <input id=\"newAddRow\" type=\"button\" value=\"Ok\" class=\"ch-btn ch-btn-small\" data-js=\"addBtn\">\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n        </tr>\n    </tfoot>\n</table>\n";
+    return "<h1>Administrador de Campañas</h1>\n<div class=\"actions clearfix\">\n    <input type=\"button\" class=\"ch-btn ch-btn-small\" value=\"Modify Selected\" data-js=\"modifySelected\">\n    <input type=\"button\" class=\"ch-btn ch-btn-small\" value=\"Save Selected\" data-js=\"saveSelected\">\n    <input type=\"button\" class=\"ch-btn ch-btn-small\" value=\"Delete Selected\" data-js=\"deleteSelected\">\n    <div class=\"search-field\">\n        <label for=\"input_ico_inside\">\n            Search by name:\n        </label>\n        <input class=\"ch-form-icon-input\" type=\"text\" id=\"input_ico_inside\" name=\"input_ico\" size=\"30\" placeholder=\"\" id=\"searchName\" data-js=\"searchName\">\n        <i class=\"ch-form-icon-inner ch-icon-search\"></i>\n    </div>\n    <div class=\"sort-field\">\n        <label for=\"sortBy\">\n            Ordenar por:\n        </label>\n        <select id=\"sortBy\" data-js=\"sortBy\">\n            <option value=\"dailyBudget\">Daily budget</option>\n            <option value=\"cpcProm\">CPC</option>\n            <option value=\"clics\">Clics</option>\n            <option value=\"prints\">Prints</option>\n            <option value=\"ctr\">CTR</option>\n            <option value=\"budget\">Budget</option>\n        </select>\n        <select id=\"order\" data-js=\"order\">\n            <option value=\"DESC\">Asc</option>\n            <option value=\"ASC\">Desc</option>\n        </select>\n    </div>\n</div>\n<table class=\"campaigns ch-datagrid\">\n    <thead>\n        <tr>\n            <th>\n                <input type=\"checkbox\" data-js=\"checkAll\" name=\"checkAll\">\n            </th>\n            <th class=\"medium2-col\">\n                Name\n            </th>\n            <th class=\"medium-col\">\n                Daily budget\n            </th>\n            <th class=\"medium-col\">\n                Starting Date\n            </th>\n            <th class=\"medium-col\">\n                Ending date\n            </th>\n            <th class=\"small-col\">\n                CPC\n            </th>\n            <th class=\"small-col\">\n                Clics\n            </th>\n            <th class=\"small-col\">\n                Prints\n            </th>\n            <th class=\"small-col\">\n                CTR\n            </th>\n            <th class=\"small-col\">\n                Budget\n            </th>\n            <th class=\"medium-col\">\n                State\n            </th>\n            <th class=\"medium-col\">\n                Acción\n            </th>\n            <th class=\"small-col\">\n                Delete\n            </th>\n        </tr>\n    </thead>\n    <tbody></tbody>\n    <tfoot>\n        <tr>\n            <td colspan=\"4\">\n                Add <input id=\"add-input\" type=\"text\" name=\"add-input\" value=\"1\" data-js=\"addInput\"> row/s <input id=\"newAddRow\" type=\"button\" value=\"Ok\" class=\"ch-btn ch-btn-small\" data-js=\"addBtn\">\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n            <td>\n            </td>\n        </tr>\n    </tfoot>\n</table>\n";
 },"useData":true});
 // App.js
 ;(function (win) {
@@ -32460,18 +32460,18 @@ AdvertisingApp.module('PAds.Collections', function (Collections, AdvertisingApp,
         initialize: function(){
           this.sortVar = {
               sortBy : "dailyBudget",
-              sortOrder : "asc"
+              sortOrder : "DESC"
           };
         },
 
         comparator: function(collection){
           var that = this;
-          if (that.sortVar.sortOrder === "asc") {
+          if (that.sortVar.sortOrder === "DESC") {
               return (collection.get(that.sortVar.sortBy));
           } else {
               return -(collection.get(that.sortVar.sortBy));
           }
-        }
+      }
     });
 });
 
@@ -32503,6 +32503,7 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
         initialize: function(){
             this.listenTo(AdvertisingApp, "modifySelected", this.modifySelected);
             this.listenTo(AdvertisingApp, "saveSelected", this.saveSelected);
+            this.listenTo(AdvertisingApp, "deleteSelected", this.deleteSelected);
           },
 
         onRender: function () {
@@ -32573,6 +32574,12 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
                     this.saveCampaign();
                 }
             }
+        },
+
+        deleteSelected : function () {
+            if(this.$(".checkbox").is(':checked')) {
+                this.deleteCampaign();
+            }
         }
 
         });
@@ -32586,6 +32593,7 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
 
       childViewContainer: "tbody",
 
+      reorderOnSort: true,
 
       tagName: 'div',
 
@@ -32601,8 +32609,16 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
           checkAll: '[data-js="checkAll"]',
           modifySelected: '[data-js="modifySelected"]',
           saveSelected: '[data-js="saveSelected"]',
+          deleteSelected: '[data-js="deleteSelected"]',
           sortBySelect: '[data-js="sortBy"]',
-          orderSelect: '[data-js="order"]'
+          orderSelect: '[data-js="order"]',
+          searchName : '[data-js="searchName"]',
+          tbody: 'tbody'
+      },
+
+      onRender: function () {
+           this.ui.sortBySelect.val(this.collection.sortVar.sortBy);
+           this.ui.orderSelect.val(this.collection.sortVar.sortOrder);
       },
 
       events: {
@@ -32610,8 +32626,10 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
           'click @ui.checkAll': 'checkRows',
           'click @ui.modifySelected': 'modifySelected',
           'click @ui.saveSelected': 'saveSelected',
+          'click @ui.deleteSelected': 'deleteSelected',
           'change @ui.sortBySelect': 'sort',
-          'change @ui.orderSelect': 'sort'
+          'change @ui.orderSelect': 'sort',
+          'keyup @ui.searchName': 'newFilter'
       },
 
         addCampaign: function () {
@@ -32641,21 +32659,36 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
             AdvertisingApp.trigger('saveSelected');
         },
 
+        deleteSelected : function () {
+            AdvertisingApp.trigger('deleteSelected');
+        },
+
         sort : function () {
             this.collection.sortVar.sortBy = this.ui.sortBySelect.val();
             this.collection.sortVar.sortOrder = this.ui.orderSelect.val();
-            console.log(this.ui.sortBySelect.val());
-            console.log(this.ui.orderSelect.val());
-            this.collection.sort();
-        }
+            this.collection.sort(this.collection.comparator);
+        },
+
+      newFilter : function () {
+          that = this;
+           _.each(that.children._views,function(v){
+               that.ui.tbody.append(v.$el);
+               });
+          _.each(that.children._views,function(v){
+              if(v.model.attributes.name.indexOf(that.ui.searchName.val()) <= -1){
+                 v.$el.remove();
+              }
+            });
+      }
     });
 });
-
-'use strict';
 
 AdvertisingApp.module('PAds', function (PAds, AdvertisingApp, Backbone, Marionette, $, _) {
     var controller,
         Router;
+
+        AdvertisingApp.PAds.Cache = {};
+        AdvertisingApp.PAds.Cache.Collections = {};
 
     Router = Marionette.AppRouter.extend({
         'appRoutes': {
@@ -32672,7 +32705,7 @@ AdvertisingApp.module('PAds', function (PAds, AdvertisingApp, Backbone, Marionet
 
             campaigns.fetch({
                 'success': function(collection, response, options){
-                    // collection.trigger('fetched');
+                    AdvertisingApp.PAds.Cache.Collections.campaigns = _.extend({}, collection);
                 }
             });
 

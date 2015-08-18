@@ -1,27 +1,32 @@
 <h1>Administrador de Campañas</h1>
-<div class="actions">
+<div class="actions clearfix">
     <input type="button" class="ch-btn ch-btn-small" value="Modify Selected" data-js="modifySelected">
     <input type="button" class="ch-btn ch-btn-small" value="Save Selected" data-js="saveSelected">
-    <label for="input_ico_inside">
-        Search by name:
-    </label>
-    <input class="ch-form-icon-input" type="text" id="input_ico_inside" name="input_ico" size="30" placeholder="">
-    <i class="ch-form-icon-inner ch-icon-search"></i>
-    <label for="sortBy">
-        Ordenar por:
-    </label>
-    <select id="sortBy" data-js="sortBy">
-        <option value="DB">Daily budget</option>
-        <option value="CPC">CPC</option>
-        <option value="CLICS">Clics</option>
-        <option value="PRINTS">Prints</option>
-        <option value="CTR">CTR</option>
-        <option value="BUDGET">Budget</option>
-    </select>
-    <select id="order" data-js="order">
-        <option value="DESC">Desc</option>
-        <option value="ASC">Asc</option>
-    </select>
+    <input type="button" class="ch-btn ch-btn-small" value="Delete Selected" data-js="deleteSelected">
+    <div class="search-field">
+        <label for="input_ico_inside">
+            Search by name:
+        </label>
+        <input class="ch-form-icon-input" type="text" id="input_ico_inside" name="input_ico" size="30" placeholder="" id="searchName" data-js="searchName">
+        <i class="ch-form-icon-inner ch-icon-search"></i>
+    </div>
+    <div class="sort-field">
+        <label for="sortBy">
+            Ordenar por:
+        </label>
+        <select id="sortBy" data-js="sortBy">
+            <option value="dailyBudget">Daily budget</option>
+            <option value="cpcProm">CPC</option>
+            <option value="clics">Clics</option>
+            <option value="prints">Prints</option>
+            <option value="ctr">CTR</option>
+            <option value="budget">Budget</option>
+        </select>
+        <select id="order" data-js="order">
+            <option value="DESC">Asc</option>
+            <option value="ASC">Desc</option>
+        </select>
+    </div>
 </div>
 <table class="campaigns ch-datagrid">
     <thead>

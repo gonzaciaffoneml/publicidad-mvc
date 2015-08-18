@@ -6,6 +6,7 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
 
       childViewContainer: "tbody",
 
+      reorderOnSort: true,
 
       tagName: 'div',
 
@@ -21,8 +22,16 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
           checkAll: '[data-js="checkAll"]',
           modifySelected: '[data-js="modifySelected"]',
           saveSelected: '[data-js="saveSelected"]',
+          deleteSelected: '[data-js="deleteSelected"]',
           sortBySelect: '[data-js="sortBy"]',
-          orderSelect: '[data-js="order"]'
+          orderSelect: '[data-js="order"]',
+          searchName : '[data-js="searchName"]',
+          tbody: 'tbody'
+      },
+
+      onRender: function () {
+           this.ui.sortBySelect.val(this.collection.sortVar.sortBy);
+           this.ui.orderSelect.val(this.collection.sortVar.sortOrder);
       },
 
       events: {
@@ -30,8 +39,10 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
           'click @ui.checkAll': 'checkRows',
           'click @ui.modifySelected': 'modifySelected',
           'click @ui.saveSelected': 'saveSelected',
+          'click @ui.deleteSelected': 'deleteSelected',
           'change @ui.sortBySelect': 'sort',
-          'change @ui.orderSelect': 'sort'
+          'change @ui.orderSelect': 'sort',
+          'keyup @ui.searchName': 'newFilter'
       },
 
         addCampaign: function () {
@@ -61,12 +72,26 @@ AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, M
             AdvertisingApp.trigger('saveSelected');
         },
 
+        deleteSelected : function () {
+            AdvertisingApp.trigger('deleteSelected');
+        },
+
         sort : function () {
             this.collection.sortVar.sortBy = this.ui.sortBySelect.val();
             this.collection.sortVar.sortOrder = this.ui.orderSelect.val();
-            console.log(this.ui.sortBySelect.val());
-            console.log(this.ui.orderSelect.val());
-            this.collection.sort();
-        }
+            this.collection.sort(this.collection.comparator);
+        },
+
+      newFilter : function () {
+          that = this;
+           _.each(that.children._views,function(v){
+               that.ui.tbody.append(v.$el);
+               });
+          _.each(that.children._views,function(v){
+              if(v.model.attributes.name.indexOf(that.ui.searchName.val()) <= -1){
+                 v.$el.remove();
+              }
+            });
+      }
     });
 });
