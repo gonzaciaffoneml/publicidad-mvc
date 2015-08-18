@@ -1,5 +1,13 @@
 #app {
   margin-top: 10px; }
+  #app .search-field {
+    margin-left: 100px;
+    display: inline-block;
+    margin-bottom: 10px; }
+  #app .sort-field {
+    float: right;
+    display: inline-block;
+    margin-top: 10px; }
 
 .campaigns {
   border-collapse: collapse;
@@ -13,7 +21,7 @@
   .campaigns .small-col {
     width: 5%; }
   .campaigns input {
-    width: 90%; }
+    width: 70%; }
   .campaigns tbody tr:nth-child(even) {
     background-color: #EFEFEF; }
     .campaigns tbody tr:nth-child(even) input[readonly] {
@@ -22,13 +30,16 @@
     background-color: #F2DEDE; }
     .campaigns tbody tr.error-color input.error-border {
       border-color: #B94A48; }
+  .campaigns tfoot input {
+    width: 50px;
+    margin-left: 10px;
+    margin-right: 10px; }
   .campaigns input[readonly] {
     color: #333; }
   .campaigns #newAddRow {
-    width: 150px;
     text-align: center;
     margin: 0 auto;
-    display: block; }
+    margin-left: 10px; }
 
 .view-campaign .save {
   display: none; }

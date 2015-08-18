@@ -1,52 +1,97 @@
-Advertising.Views.Campaign = Backbone.View.extend({
+//'use strict';
 
-    tagName: 'table',
+AdvertisingApp.module('PAds.Views', function (Views, AdvertisingApp, Backbone, Marionette, $, _) {
 
-    className: 'campaigns ch-datagrid',
+    Views.Campaign = Marionette.CompositeView.extend({
 
-    template: __templates.tableCampaign,
+      childViewContainer: "tbody",
 
-    events: {
-        'click [data-js="addBtn"]': 'addCampaign'
-    },
+      reorderOnSort: true,
 
-    initialize: function () {
-        var that = this;
+      tagName: 'div',
 
-        this.collection.on('fetched', function() {
-            that.render();
-        });
-    },
+      className: '',
 
-    render: function () {
+      template: __templates.tableCampaign,
 
-        var  that = this;
+      childView: Views.ModifyCampaign,
 
-        this.$el.empty();
+      ui: {
+          addBtn: '[data-js="addBtn"]',
+          addInput: '[data-js="addInput"]',
+          checkAll: '[data-js="checkAll"]',
+          modifySelected: '[data-js="modifySelected"]',
+          saveSelected: '[data-js="saveSelected"]',
+          deleteSelected: '[data-js="deleteSelected"]',
+          sortBySelect: '[data-js="sortBy"]',
+          orderSelect: '[data-js="order"]',
+          searchName : '[data-js="searchName"]',
+          tbody: 'tbody'
+      },
 
-        this.$el.append(this.template());
+      onRender: function () {
+           this.ui.sortBySelect.val(this.collection.sortVar.sortBy);
+           this.ui.orderSelect.val(this.collection.sortVar.sortOrder);
+      },
 
-        _.each(this.collection.models, function(model, i){
+      events: {
+          'click @ui.addBtn': 'addCampaign',
+          'click @ui.checkAll': 'checkRows',
+          'click @ui.modifySelected': 'modifySelected',
+          'click @ui.saveSelected': 'saveSelected',
+          'click @ui.deleteSelected': 'deleteSelected',
+          'change @ui.sortBySelect': 'sort',
+          'change @ui.orderSelect': 'sort',
+          'keyup @ui.searchName': 'newFilter'
+      },
 
-            var modifyCampaign = new Advertising.Views.ModifyCampaign({
-                model: model,
-                isEdit : false
+        addCampaign: function () {
+            for (i = 1; i <= this.ui.addInput.val(); i++) {
+              var newCampaign = new AdvertisingApp.PAds.Models.Campaign();
+              this.collection.add(newCampaign);
+            }
+        },
+
+        checkRows : function () {
+            if($(this.ui.checkAll).prop('checked')){
+                $('tbody tr td input[type="checkbox"]').each(function(){
+                    $(this).prop('checked', true);
+                });
+            }else{
+                $('tbody tr td input[type="checkbox"]').each(function(){
+                    $(this).prop('checked', false);
+                });
+            }
+        },
+
+        modifySelected : function () {
+            AdvertisingApp.trigger('modifySelected');
+        },
+
+        saveSelected : function () {
+            AdvertisingApp.trigger('saveSelected');
+        },
+
+        deleteSelected : function () {
+            AdvertisingApp.trigger('deleteSelected');
+        },
+
+        sort : function () {
+            this.collection.sortVar.sortBy = this.ui.sortBySelect.val();
+            this.collection.sortVar.sortOrder = this.ui.orderSelect.val();
+            this.collection.sort(this.collection.comparator);
+        },
+
+      newFilter : function () {
+          that = this;
+           _.each(that.children._views,function(v){
+               that.ui.tbody.append(v.$el);
+               });
+          _.each(that.children._views,function(v){
+              if(v.model.attributes.name.indexOf(that.ui.searchName.val()) <= -1){
+                 v.$el.remove();
+              }
             });
-
-            that.$('tbody').append(modifyCampaign.el);
-
-        });
-
-    },
-
-    addCampaign: function () {
-        var newCampaign = new Advertising.Models.Campaign();
-        var modifyCampaign = new Advertising.Views.ModifyCampaign({
-            model: newCampaign,
-            isAdding : true
-        });
-        this.collection.add(newCampaign);
-        this.$('tbody').append(modifyCampaign.el);
-    }
-
+      }
+    });
 });

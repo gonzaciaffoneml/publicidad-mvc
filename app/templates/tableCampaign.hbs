@@ -1,49 +1,101 @@
-<caption>Administrador de Campañas</caption>
-<thead>
-    <tr>
-        <th class="medium2-col">
-            Name
-        </th>
-        <th class="medium-col">
-            Daily budget
-        </th>
-        <th class="medium-col">
-            Starting Date
-        </th>
-        <th class="medium-col">
-            Ending date
-        </th>
-        <th class="small-col">
-            CPC
-        </th>
-        <th class="small-col">
-            Clics
-        </th>
-        <th class="small-col">
-            Prints
-        </th>
-        <th class="small-col">
-            CTR
-        </th>
-        <th class="small-col">
-            Budget
-        </th>
-        <th class="medium-col">
-            State
-        </th>
-        <th class="medium-col">
-            Acción
-        </th>
-        <th class="small-col">
-            Delete
-        </th>
-    </tr>
-</thead>
-<tbody></tbody>
-<tfoot>
-    <tr>
-        <td colspan="12">
-            <input id="newAddRow" type="button" value="Agregar" class="ch-btn ch-btn-small" data-js="addBtn">
-        </td>
-    </tr>
-</tfoot>
+<h1>Administrador de Campañas</h1>
+<div class="actions clearfix">
+    <input type="button" class="ch-btn ch-btn-small" value="Modify Selected" data-js="modifySelected">
+    <input type="button" class="ch-btn ch-btn-small" value="Save Selected" data-js="saveSelected">
+    <input type="button" class="ch-btn ch-btn-small" value="Delete Selected" data-js="deleteSelected">
+    <div class="search-field">
+        <label for="input_ico_inside">
+            Search by name:
+        </label>
+        <input class="ch-form-icon-input" type="text" id="input_ico_inside" name="input_ico" size="30" placeholder="" id="searchName" data-js="searchName">
+        <i class="ch-form-icon-inner ch-icon-search"></i>
+    </div>
+    <div class="sort-field">
+        <label for="sortBy">
+            Ordenar por:
+        </label>
+        <select id="sortBy" data-js="sortBy">
+            <option value="dailyBudget">Daily budget</option>
+            <option value="cpcProm">CPC</option>
+            <option value="clics">Clics</option>
+            <option value="prints">Prints</option>
+            <option value="ctr">CTR</option>
+            <option value="budget">Budget</option>
+        </select>
+        <select id="order" data-js="order">
+            <option value="DESC">Asc</option>
+            <option value="ASC">Desc</option>
+        </select>
+    </div>
+</div>
+<table class="campaigns ch-datagrid">
+    <thead>
+        <tr>
+            <th>
+                <input type="checkbox" data-js="checkAll" name="checkAll">
+            </th>
+            <th class="medium2-col">
+                Name
+            </th>
+            <th class="medium-col">
+                Daily budget
+            </th>
+            <th class="medium-col">
+                Starting Date
+            </th>
+            <th class="medium-col">
+                Ending date
+            </th>
+            <th class="small-col">
+                CPC
+            </th>
+            <th class="small-col">
+                Clics
+            </th>
+            <th class="small-col">
+                Prints
+            </th>
+            <th class="small-col">
+                CTR
+            </th>
+            <th class="small-col">
+                Budget
+            </th>
+            <th class="medium-col">
+                State
+            </th>
+            <th class="medium-col">
+                Acción
+            </th>
+            <th class="small-col">
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                Add <input id="add-input" type="text" name="add-input" value="1" data-js="addInput"> row/s <input id="newAddRow" type="button" value="Ok" class="ch-btn ch-btn-small" data-js="addBtn">
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+    </tfoot>
+</table>
